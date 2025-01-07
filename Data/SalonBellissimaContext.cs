@@ -15,5 +15,14 @@ namespace SalonBellissima.Data
         }
 
         public DbSet<SalonBellissima.Models.Serviciu> Serviciu { get; set; } = default!;
+        public DbSet<SalonBellissima.Models.Angajat> Angajat { get; set; } = default!;
+        public DbSet<SalonBellissima.Models.Categorie> Categorie { get; set; } = default!;
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<Serviciu>()
+                .HasOne(s => s.Categorie)
+                .WithMany(c => c.Servicii)
+                .HasForeignKey(s => s.CategorieID);
+        }
     }
 }
