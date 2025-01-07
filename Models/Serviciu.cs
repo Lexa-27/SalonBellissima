@@ -15,6 +15,6 @@ namespace SalonBellissima.Models
         public ICollection<AngajatAsociat>? AngajatiAsociati { get; set; }
         public int? CategorieID { get; set; }
         public Categorie? Categorie { get; set; }
-
+        public ICollection<Programare>? Programari { get; set; }
     }
 }
