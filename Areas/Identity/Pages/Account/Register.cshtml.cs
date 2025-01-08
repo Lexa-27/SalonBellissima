@@ -76,6 +76,13 @@ namespace SalonBellissima.Areas.Identity.Pages.Account
         /// </summary>
         public class InputModel
         {
+            [Required]
+            [Display(Name = "Prenume")]
+            public string Prenume { get; set; }
+
+            [Required]
+            [Display(Name = "Nume")]
+            public string Nume { get; set; }
             /// <summary>
             ///     This API supports the ASP.NET Core Identity default UI infrastructure and is not intended to be used
             ///     directly from your code. This API may change or be removed in future releases.
@@ -124,6 +131,8 @@ namespace SalonBellissima.Areas.Identity.Pages.Account
             await _emailStore.SetEmailAsync(user, Input.Email, CancellationToken.None);
             var result = await _userManager.CreateAsync(user, Input.Password);
 
+            Client.Prenume = Input.Prenume;
+            Client.Nume = Input.Nume;
             Client.Email = Input.Email;
             _context.Client.Add(Client);
             await _context.SaveChangesAsync();
