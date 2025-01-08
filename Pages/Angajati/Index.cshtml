@@ -2,13 +2,13 @@
 @model SalonBellissima.Pages.Angajati.IndexModel
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Angajați";
 }
 
-<h1>Index</h1>
+<h1>Stiliștii și artiștii nostri: </h1>
 
 <p>
-    <a asp-page="Create">Create New</a>
+    <a asp-page="Create">Adaugă un angajat</a>
 </p>
 <table class="table">
     <thead>
@@ -18,6 +18,9 @@
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.Angajat[0].Nume)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Angajat[0].Ocupatie)
             </th>
             <th></th>
         </tr>
@@ -30,6 +33,9 @@
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Nume)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Ocupatie)
             </td>
             <td>
                 <a asp-page="./Edit" asp-route-id="@item.ID">Edit</a> |

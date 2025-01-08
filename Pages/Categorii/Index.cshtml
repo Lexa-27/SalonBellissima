@@ -2,13 +2,13 @@
 @model SalonBellissima.Pages.Categorii.IndexModel
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Categorii";
 }
 
-<h1>Index</h1>
+<h1>În ce ne specializăm?</h1>
 
 <p>
-    <a asp-page="Create">Create New</a>
+    <a asp-page="Create">Adaugă o categorie</a>
 </p>
 <table class="table">
     <thead>
@@ -32,7 +32,7 @@
                     @Html.DisplayFor(modelItem => item.DenumireCategorie)
                 </td>
             <td>
-                    <a asp-page="./Index" asp-route-id="@item.ID">Select</a> |
+                <a asp-page="./Index" asp-route-id="@item.ID">Select</a> |
                 <a asp-page="./Edit" asp-route-id="@item.ID">Edit</a> |
                 <a asp-page="./Details" asp-route-id="@item.ID">Details</a> |
                 <a asp-page="./Delete" asp-route-id="@item.ID">Delete</a>
@@ -60,9 +60,16 @@
                         foreach (var b in item.Servicii)
                         {
 
-                            @b.Denumire @b.Pret @b.Durata
+                            <div>
 
-                            <br />
+                                <strong>@b.Denumire</strong>
+                                <br />
+                                <strong>Pret:</strong> @b.Pret lei
+                                <br />
+                                <strong>Durata:</strong> @b.Durata minute
+                                <br />
+                                <br /> 
+                            </div>
                         }
                     }
                 </td>

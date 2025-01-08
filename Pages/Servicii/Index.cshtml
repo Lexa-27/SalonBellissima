@@ -2,20 +2,20 @@
 @model SalonBellissima.Pages.Servicii.IndexModel
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Servicii";
 }
 
-<h1>Index</h1>
+<h1>Servicii oferite</h1>
 
 <p>
-    <a asp-page="Create">Create New</a>
+    <a asp-page="Create">Adaugă un serviciu</a>
 </p>
 <form asp-page="./Index" method="get">
     <div class="form-actions no-color">
         <p>
             Caută un serviciu după denumire:
             <input type="text" name="SearchString" value="@Model.CurrentFilter" />
-            <input type="submit" value="Search" class="btn btn-primary" /> |
+            <input type="submit" value="Caută" class="btn btn-primary" /> |
             <a asp-page="./Index">Înapoi</a>
         </p>
     </div>
@@ -61,13 +61,13 @@
                 @Html.DisplayFor(modelItem => item.Pret)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Durata)
+                @Html.DisplayFor(modelItem => item.Durata) <span>(de) minute</span>
             </td>
                 <td>
                     @{
                         foreach (var angajat in item.AngajatiAsociati)
                         {
-                            @angajat.Angajat.ID @: @angajat.Angajat.NumeAngajat <br />
+                             @: @angajat.Angajat.NumeAngajat <br />
                         }
                     }
                 </td>
