@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Security.Policy;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
@@ -12,6 +13,7 @@ using SalonBellissima.Models;
 
 namespace SalonBellissima.Pages.Servicii
 {
+    [Authorize(Roles = "Admin")]
     public class EditModel : AngajatiAsociatiPageModel
     {
         private readonly SalonBellissima.Data.SalonBellissimaContext _context;
