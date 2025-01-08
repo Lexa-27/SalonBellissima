@@ -96,10 +96,12 @@ namespace SalonBellissima.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Nume")
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(30)
+                        .HasColumnType("nvarchar(30)");
 
                     b.Property<string>("Prenume")
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(30)
+                        .HasColumnType("nvarchar(30)");
 
                     b.HasKey("ID");
 
@@ -119,6 +121,9 @@ namespace SalonBellissima.Migrations
 
                     b.Property<DateTime>("DataProgramare")
                         .HasColumnType("datetime2");
+
+                    b.Property<TimeSpan>("OraProgramare")
+                        .HasColumnType("time");
 
                     b.Property<int?>("ServiciuID")
                         .HasColumnType("int");
