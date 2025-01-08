@@ -24,5 +24,7 @@ namespace SalonBellissima.Data
                 .WithMany(c => c.Servicii)
                 .HasForeignKey(s => s.CategorieID);
         }
+        public DbSet<SalonBellissima.Models.Client> Client { get; set; } = default!;
+        public DbSet<SalonBellissima.Models.Programare> Programare { get; set; } = default!;
     }
 }

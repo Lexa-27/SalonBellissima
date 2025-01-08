@@ -83,6 +83,60 @@ namespace SalonBellissima.Migrations
                     b.ToTable("Categorie");
                 });
 
+            modelBuilder.Entity("SalonBellissima.Models.Client", b =>
+                {
+                    b.Property<int>("ID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ID"));
+
+                    b.Property<string>("Email")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Nume")
+                        .HasMaxLength(30)
+                        .HasColumnType("nvarchar(30)");
+
+                    b.Property<string>("Prenume")
+                        .HasMaxLength(30)
+                        .HasColumnType("nvarchar(30)");
+
+                    b.HasKey("ID");
+
+                    b.ToTable("Client");
+                });
+
+            modelBuilder.Entity("SalonBellissima.Models.Programare", b =>
+                {
+                    b.Property<int>("ID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ID"));
+
+                    b.Property<int?>("ClientID")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("DataProgramare")
+                        .HasColumnType("datetime2");
+
+                    b.Property<TimeSpan>("OraProgramare")
+                        .HasColumnType("time");
+
+                    b.Property<int?>("ServiciuID")
+                        .HasColumnType("int");
+
+                    b.HasKey("ID");
+
+                    b.HasIndex("ClientID");
+
+                    b.HasIndex("ServiciuID");
+
+                    b.ToTable("Programare");
+                });
+
             modelBuilder.Entity("SalonBellissima.Models.Serviciu", b =>
                 {
                     b.Property<int>("ID")
@@ -130,6 +184,21 @@ namespace SalonBellissima.Migrations
                     b.Navigation("Serviciu");
                 });
 
+            modelBuilder.Entity("SalonBellissima.Models.Programare", b =>
+                {
+                    b.HasOne("SalonBellissima.Models.Client", "Client")
+                        .WithMany("Programari")
+                        .HasForeignKey("ClientID");
+
+                    b.HasOne("SalonBellissima.Models.Serviciu", "Servciu")
+                        .WithMany("Programari")
+                        .HasForeignKey("ServiciuID");
+
+                    b.Navigation("Client");
+
+                    b.Navigation("Servciu");
+                });
+
             modelBuilder.Entity("SalonBellissima.Models.Serviciu", b =>
                 {
                     b.HasOne("SalonBellissima.Models.Categorie", "Categorie")
@@ -149,9 +218,16 @@ namespace SalonBellissima.Migrations
                     b.Navigation("Servicii");
                 });
 
+            modelBuilder.Entity("SalonBellissima.Models.Client", b =>
+                {
+                    b.Navigation("Programari");
+                });
+
             modelBuilder.Entity("SalonBellissima.Models.Serviciu", b =>
                 {
                     b.Navigation("AngajatiAsociati");
+
+                    b.Navigation("Programari");
                 });
 #pragma warning restore 612, 618
         }
